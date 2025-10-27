@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Wisdom High School | Excellence in Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Get Access Modal -->
+<div class="modal" id="getAccessModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeAccessModal">&times;</span>
+        <div class="modal-header">
+            <h2>Get Parent Portal Access</h2>
+            <p>Please provide information about your ward to verify and create your account</p>
+        </div>
+
+        <div class="form-steps">
+            <div class="step active" id="accessStep1">
+                1
+                <div class="step-label">Ward Information</div>
+            </div>
+            <div class="step" id="accessStep2">
+                2
+                <div class="step-label">Parent Details</div>
+            </div>
+            <div class="step" id="accessStep3">
+                3
+                <div class="step-label">Create Account</div>
+            </div>
+        </div>
+
+        <form id="getAccessForm">
+            <div class="form-step active" id="accessFormStep1">
+                <h3>Ward Information</h3>
+                <div class="form-group">
+                    <label for="wardFullName">Student Full Name</label>
+                    <input type="text" id="wardFullName" placeholder="Enter student's full name as in school records" required>
+                </div>
+                <div class="form-group">
+                    <label for="wardStudentId">Student ID</label>
+                    <input type="text" id="wardStudentId" placeholder="Enter student ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="wardGrade">Grade Level</label>
+                    <select id="wardGrade" required>
+                        <option value="">Select Grade</option>
+                        <option value="9">Grade 9</option>
+                        <option value="10">Grade 10</option>
+                        <option value="11">Grade 11</option>
+                        <option value="12">Grade 12</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="wardDateOfBirth">Date of Birth</label>
+                    <input type="date" id="wardDateOfBirth" required>
+                </div>
+                <div class="form-navigation">
+                    <div></div>
+                    <button type="button" class="cta-button next-access-step" data-next="2">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-step" id="accessFormStep2">
+                <h3>Parent/Guardian Details</h3>
+                <div class="form-group">
+                    <label for="parentFullName">Your Full Name</label>
+                    <input type="text" id="parentFullName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="parentRelationship">Relationship to Student</label>
+                    <select id="parentRelationship" required>
+                        <option value="">Select Relationship</option>
+                        <option value="mother">Mother</option>
+                        <option value="father">Father</option>
+                        <option value="guardian">Guardian</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="parentPhone">Phone Number</label>
+                    <input type="tel" id="parentPhone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="parentEmailAccess">Email Address</label>
+                    <input type="email" id="parentEmailAccess" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-navigation">
+                    <button type="button" class="outline-button prev-access-step" data-prev="1">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="cta-button next-access-step" data-next="3">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-step" id="accessFormStep3">
+                <h3>Create Your Account</h3>
+                <div class="form-group">
+                    <label for="createUsername">Choose Username</label>
+                    <input type="text" id="createUsername" placeholder="Choose a username" required>
+                    <small style="color: var(--gray); font-size: 0.8rem;">This will be your login username</small>
+                </div>
+                <div class="form-group">
+                    <label for="createPassword">Create Password</label>
+                    <input type="password" id="createPassword" placeholder="Create a strong password" required>
+                    <small style="color: var(--gray); font-size: 0.8rem;">Minimum 8 characters with letters and numbers</small>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="agreeTerms" required>
+                        I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a>
+                    </label>
+                </div>
+                <div id="accessStatus" style="margin: 15px 0; padding: 10px; border-radius: 8px; display: none;"></div>
+                <div class="form-navigation">
+                    <button type="button" class="outline-button prev-access-step" data-prev="2">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="submit" class="cta-button">
+                        Create Account <i class="fas fa-user-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="modal" id="forgotPasswordModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeForgotPasswordModal">&times;</span>
+        <div class="modal-header">
+            <h2>Reset Your Password</h2>
+            <p>Enter your email address and we'll send you instructions to reset your password.</p>
+        </div>
+
+        <form id="forgotPasswordForm">
+            <div class="form-group">
+                <label for="recoveryEmail">Email Address</label>
+                <input type="email" id="recoveryEmail" placeholder="Enter your registered email address" required>
+            </div>
+            
+            <div id="passwordRecoveryStatus" style="margin: 15px 0; padding: 10px; border-radius: 8px; display: none;"></div>
+            
+            <div class="form-navigation">
+                <button type="button" class="outline-button" id="backToLogin">
+                    <i class="fas fa-arrow-left"></i> Back to Login
+                </button>
+                <button type="submit" class="cta-button">
+                    Send Reset Instructions <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+
+        <div style="margin-top: 30px; padding: 20px; background: rgba(26, 75, 140, 0.05); border-radius: 15px;">
+            <h4 style="color: var(--primary); margin-bottom: 10px;">Need Help?</h4>
+            <p style="color: var(--gray); margin-bottom: 0;">Contact our IT support team at <strong>support@royalwisdom.edu</strong> or call <strong>+1 (555) 123-HELP</strong></p>
+        </div>
+    </div>
+</div>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-crown logo-icon"></i>
+                <div class="logo-text">
+                    <span>Royal Wisdom</span>
+                    <div class="logo-subtitle">HIGH SCHOOL</div>
+                </div>
+            </a>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#academics">Academics</a>
+                <a href="#admissions">Admissions</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="cta-button parent-portal-btn" id="parentPortalBtn">
+                    Parent Portal <i class="fas fa-user-graduate"></i>
+                </button>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Slideshow -->
+    <!-- Updated Hero Section with Real Images -->
+<section class="hero" id="home">
+    <div class="slideshow">
+        <div class="slide slide-1 active" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80')"></div>
+        <div class="slide slide-2" style="background-image: url('https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+        <div class="slide slide-3" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+        <div class="slide slide-4" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80')"></div>
+    </div>
+    <div class="slide-content">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInUp">Shaping Tomorrow's Leaders Today</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">At Royal Wisdom High School, we provide an exceptional education that combines academic rigor with character development in a nurturing environment.</p>
+            <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-2s">
+                <button class="cta-button">
+                    Explore Programs <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="outline-button">
+                    Schedule a Visit
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="slideshow-nav">
+        <div class="slide-dot active" data-slide="0"></div>
+        <div class="slide-dot" data-slide="1"></div>
+        <div class="slide-dot" data-slide="2"></div>
+        <div class="slide-dot" data-slide="3"></div>
+    </div>
+</section>
+
+<!-- About Us Section -->
+<section class="section" id="about">
+    <div class="container">
+        <div class="about-container">
+            <div class="about-content">
+                <div class="section-header" style="text-align: left; margin-bottom: 50px;">
+                    <h2>About Royal Wisdom High School</h2>
+                    <p>Excellence in education since 1985</p>
+                </div>
+                
+                <div class="about-text">
+                    <p>Founded in 1985, Royal Wisdom High School has been at the forefront of academic excellence, character development, and holistic education. Our institution has nurtured generations of leaders, innovators, and compassionate citizens who make meaningful contributions to society.</p>
+                    
+                    <p>We believe that every student possesses unique talents and potential. Our mission is to provide an environment where students can discover their passions, develop critical thinking skills, and build the character needed to thrive in an ever-changing world.</p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h4>35 Years of Excellence</h4>
+                                <p>Three decades of proven academic success and student development</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h4>Diverse Community</h4>
+                                <p>Students from 25+ countries creating a global learning environment</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <h4>Holistic Approach</h4>
+                                <p>Balancing academic rigor with arts, sports, and character education</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>98%</h3>
+                            <p>College Acceptance Rate</p>
+                        </div>
+                        <div class="stat">
+                            <h3>1:12</h3>
+                            <p>Student-Teacher Ratio</p>
+                        </div>
+                        <div class="stat">
+                            <h3>25+</h3>
+                            <p>AP & Honors Courses</p>
+                        </div>
+                        <div class="stat">
+                            <h3>40+</h3>
+                            <p>Clubs & Organizations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-image">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80" alt="Royal Wisdom High School Campus">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-award"></i>
+                            <h4>Recognized Excellence</h4>
+                            <p>National Blue Ribbon School Award 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mission & Vision -->
+        <div class="mission-vision">
+            <div class="mission-card">
+                <div class="card-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Our Mission</h3>
+                <p>To empower students with knowledge, character, and critical thinking skills through a rigorous academic program complemented by arts, athletics, and community service, preparing them for success in college and purposeful lives.</p>
+            </div>
+            
+            <div class="vision-card">
+                <div class="card-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Our Vision</h3>
+                <p>To be a leading educational institution that inspires lifelong learning, fosters global citizenship, and develops innovative leaders who will positively impact their communities and the world.</p>
+            </div>
+            
+            <div class="values-card">
+                <div class="card-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Our Values</h3>
+                <p>Integrity, Excellence, Respect, Innovation, and Community. These core values guide everything we do and form the foundation of our school culture.</p>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Academics Section -->
+    <section class="section" id="academics">
+        <div class="container">
+            <div class="section-header">
+                <h2>Academic Programs</h2>
+                <p>Our curriculum challenges students to reach their full potential.</p>
+            </div>
+            <div class="academics-grid">
+                <div class="academic-card">
+                    <div class="academic-image">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="academic-content">
+                        <h3>STEM Program</h3>
+                        <p>Advanced courses in Science, Technology, Engineering, and Mathematics with hands-on laboratory experiences.</p>
+                        <ul class="academic-features">
+                            <li><i class="fas fa-check"></i> Advanced Placement Courses</li>
+                            <li><i class="fas fa-check"></i> Robotics & Coding Clubs</li>
+                            <li><i class="fas fa-check"></i> Science Olympiad Team</li>
+                        </ul>
+                        <button class="outline-button" style="color: var(--primary); border-color: var(--primary);">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="academic-card">
+                    <div class="academic-image">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="academic-content">
+                        <h3>Humanities</h3>
+                        <p>Comprehensive study of literature, history, philosophy, and social sciences to develop critical thinking.</p>
+                        <ul class="academic-features">
+                            <li><i class="fas fa-check"></i> Debate & Model UN</li>
+                            <li><i class="fas fa-check"></i> Creative Writing Workshops</li>
+                            <li><i class="fas fa-check"></i> Historical Research Projects</li>
+                        </ul>
+                        <button class="outline-button" style="color: var(--primary); border-color: var(--primary);">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="academic-card">
+                    <div class="academic-image">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <div class="academic-content">
+                        <h3>International Baccalaureate</h3>
+                        <p>Internationally recognized program that prepares students for global citizenship and university studies.</p>
+                        <ul class="academic-features">
+                            <li><i class="fas fa-check"></i> Bilingual Diploma Options</li>
+                            <li><i class="fas fa-check"></i> Global Exchange Programs</li>
+                            <li><i class="fas fa-check"></i> Extended Essay & CAS</li>
+                        </ul>
+                        <button class="outline-button" style="color: var(--primary); border-color: var(--primary);">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Admissions Section -->
+<section class="section" id="admissions" style="background: linear-gradient(135deg, var(--light) 0%, var(--glass) 100%);">
+    <div class="container">
+        <div class="section-header">
+            <h2>Admissions Process</h2>
+            <p>Join our community of learners and leaders. Start your journey at Royal Wisdom High School today.</p>
+        </div>
+
+        <!-- Admissions Process Steps -->
+        <div class="admissions-process">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Inquiry & Application</h3>
+                    <p>Submit your initial inquiry and complete the online application form. Our admissions team will contact you within 48 hours.</p>
+                    <ul class="step-features">
+                        <li><i class="fas fa-check"></i> Online application form</li>
+                        <li><i class="fas fa-check"></i> Document submission</li>
+                        <li><i class="fas fa-check"></i> Application fee payment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Entrance Assessment</h3>
+                    <p>Students complete age-appropriate assessments to evaluate academic readiness and potential.</p>
+                    <ul class="step-features">
+                        <li><i class="fas fa-check"></i> Mathematics & English assessment</li>
+                        <li><i class="fas fa-check"></i> Cognitive abilities test</li>
+                        <li><i class="fas fa-check"></i> Writing sample</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Family Interview</h3>
+                    <p>Meet with our admissions team and school leadership to discuss educational goals and expectations.</p>
+                    <ul class="step-features">
+                        <li><i class="fas fa-check"></i> Student interview</li>
+                        <li><i class="fas fa-check"></i> Parent meeting</li>
+                        <li><i class="fas fa-check"></i> Campus tour</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Acceptance & Enrollment</h3>
+                    <p>Receive your acceptance decision and complete the enrollment process to secure your place.</p>
+                    <ul class="step-features">
+                        <li><i class="fas fa-check"></i> Acceptance package</li>
+                        <li><i class="fas fa-check"></i> Tuition agreement</li>
+                        <li><i class="fas fa-check"></i> Welcome orientation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admissions Info Cards -->
+        <div class="admissions-info">
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Important Dates</h3>
+                <ul class="info-list">
+                    <li><strong>Application Deadline:</strong> March 1st</li>
+                    <li><strong>Entrance Exams:</strong> March 15th</li>
+                    <li><strong>Interviews:</strong> April 1st - 15th</li>
+                    <li><strong>Decisions Sent:</strong> May 1st</li>
+                    <li><strong>Enrollment Deadline:</strong> June 1st</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <h3>Tuition & Fees</h3>
+                <ul class="info-list">
+                    <li><strong>Annual Tuition:</strong> $25,000</li>
+                    <li><strong>Application Fee:</strong> $100</li>
+                    <li><strong>Enrollment Fee:</strong> $500</li>
+                    <li><strong>Technology Fee:</strong> $300/year</li>
+                    <li><strong>Activity Fee:</strong> $200/year</li>
+                </ul>
+                <p class="financial-aid">Financial aid and scholarship opportunities available</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Requirements</h3>
+                <ul class="info-list">
+                    <li>Completed application form</li>
+                    <li>Previous school transcripts</li>
+                    <li>Teacher recommendations (2)</li>
+                    <li>Birth certificate copy</li>
+                    <li>Immunization records</li>
+                    <li>Student essay/personal statement</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="admissions-cta">
+            <div class="cta-content">
+                <h3>Ready to Begin Your Journey?</h3>
+                <p>Schedule a campus tour or start your application today. Our admissions team is here to help you every step of the way.</p>
+                <div class="cta-buttons">
+                    <button class="cta-button" id="startApplication">
+                        Start Application <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="outline-button" id="scheduleTour">
+                        Schedule Tour <i class="fas fa-calendar-check"></i>
+                    </button>
+                    <button class="outline-button" id="downloadBrochure">
+                        Download Brochure <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="admissions-faq">
+            <h3>Frequently Asked Questions</h3>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What is the student-teacher ratio?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our student-teacher ratio is 12:1, ensuring personalized attention and support for every student.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you offer financial aid?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer need-based financial aid and merit scholarships. Approximately 30% of our students receive some form of financial assistance.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What are the school hours?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>School hours are from 8:00 AM to 3:00 PM, with after-school programs available until 6:00 PM.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Is transportation provided?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer bus services covering most areas in the city. Transportation fees apply.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- Campus Gallery Section -->
+<section class="section" id="gallery">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Campus & Facilities</h2>
+            <p>Explore our state-of-the-art facilities and vibrant campus life</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="School Library">
+                <div class="gallery-overlay">
+                    <h3>Modern Library</h3>
+                    <p>20,000+ books and digital resources</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" alt="Science Laboratory">
+                <div class="gallery-overlay">
+                    <h3>Science Labs</h3>
+                    <p>Fully equipped for hands-on learning</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Sports Complex">
+                <div class="gallery-overlay">
+                    <h3>Sports Complex</h3>
+                    <p>Olympic-size pool and multiple courts</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" alt="Art Studio">
+                <div class="gallery-overlay">
+                    <h3>Art Studios</h3>
+                    <p>Creative spaces for artistic expression</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2012&q=80" alt="School Auditorium">
+                <div class="gallery-overlay">
+                    <h3>Performing Arts Center</h3>
+                    <p>500-seat auditorium for performances</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="School Cafeteria">
+                <div class="gallery-overlay">
+                    <h3>Dining Hall</h3>
+                    <p>Healthy meals in a comfortable setting</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Student Life Section -->
+<section class="section" style="background: var(--glass);">
+    <div class="container">
+        <div class="section-header">
+            <h2>Student Life</h2>
+            <p>Beyond the classroom - where memories are made</p>
+        </div>
+        
+        <div class="student-life-slider">
+            <div class="slider-container">
+                <div class="slider-track">
+                    <div class="slider-slide active">
+                        <img src="https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80" alt="Sports Day">
+                        <div class="slide-caption">
+                            <h4>Annual Sports Day</h4>
+                            <p>House competitions and team spirit</p>
+                        </div>
+                    </div>
+                    <div class="slider-slide">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Science Fair">
+                        <div class="slide-caption">
+                            <h4>Science Fair</h4>
+                            <p>Innovative student projects and experiments</p>
+                        </div>
+                    </div>
+                    <div class="slider-slide">
+                        <img src="https://images.unsplash.com/photo-1549056572-75914d6d7e1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Drama Performance">
+                        <div class="slide-caption">
+                            <h4>Drama Productions</h4>
+                            <p>Annual school plays and musical performances</p>
+                        </div>
+                    </div>
+                    <div class="slider-slide">
+                        <img src="https://images.unsplash.com/photo-152305962303-aa56ff6f8e23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Field Trip">
+                        <div class="slide-caption">
+                            <h4>Educational Trips</h4>
+                            <p>Learning beyond classroom walls</p>
+                        </div>
+                    </div>
+                    <div class="slider-slide">
+                        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Art Exhibition">
+                        <div class="slide-caption">
+                            <h4>Art Exhibitions</h4>
+                            <p>Showcasing student creativity and talent</p>
+                        </div>
+                    </div>
+                    <div class="slider-slide">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Music Program">
+                        <div class="slide-caption">
+                            <h4>Music Programs</h4>
+                            <p>Orchestra, choir, and individual performances</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="slider-dots">
+                <button class="slider-dot active" data-slide="0"></button>
+                <button class="slider-dot" data-slide="1"></button>
+                <button class="slider-dot" data-slide="2"></button>
+                <button class="slider-dot" data-slide="3"></button>
+                <button class="slider-dot" data-slide="4"></button>
+                <button class="slider-dot" data-slide="5"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Parent Portal Section -->
+    <section class="parent-portal" id="parentPortal">
+        <div class="container portal-container">
+            <div class="portal-content">
+                <h2>Parent Portal</h2>
+                <p>Stay connected with your child's academic journey. Access grades, attendance records, and communicate with teachers through our secure online portal.</p>
+                <ul class="portal-features">
+                    <li><i class="fas fa-check-circle"></i> View real-time grade reports and progress</li>
+                    <li><i class="fas fa-check-circle"></i> Monitor attendance and punctuality records</li>
+                    <li><i class="fas fa-check-circle"></i> Communicate directly with teachers</li>
+                    <li><i class="fas fa-check-circle"></i> Access school announcements and events</li>
+                    <li><i class="fas fa-check-circle"></i> Pay tuition fees and other charges online</li>
+                </ul>
+                <button class="cta-button" id="viewSampleReport">
+                    Generate Student Report <i class="fas fa-chart-bar"></i>
+                </button>
+            </div>
+            <div class="portal-form">
+                <h3>Login to Parent Portal</h3>
+                <form id="parentLoginForm">
+                    <div class="form-group">
+                        <label for="parentEmail">Email Address</label>
+                        <input type="email" id="parentEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentPassword">Password</label>
+                        <input type="password" id="parentPassword" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%; margin-top: 10px;">
+                        Login <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </form>
+                <p style="margin-top: 20px; text-align: center; opacity: 0.8;">
+    <a href="#" style="color: var(--secondary);" id="forgotPasswordLink">Forgot password?</a> | 
+    <a href="#" style="color: var(--secondary);" id="requestAccessLink">Request access</a>
+</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>College Acceptance Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1,200+</h3>
+                    <p>Students Enrolled</p>
+                </div>
+                <div class="stat-item">
+                    <h3>75</h3>
+                    <p>Dedicated Faculty</p>
+                </div>
+                <div class="stat-item">
+                    <h3>35</h3>
+                    <p>Years of Excellence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Royal Wisdom High School</h3>
+                    <p>Preparing students for success since 1985 through academic excellence and character development.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#academics"><i class="fas fa-chevron-right"></i> Academics</a></li>
+                        <li><a href="#admissions"><i class="fas fa-chevron-right"></i> Admissions</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Academics</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> STEM Program</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Humanities</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> IB Program</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Arts & Athletics</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> College Counseling</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Education Avenue, Academic City</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@royalwisdom.edu</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Royal Wisdom High School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Parent Portal Modal -->
+    <div class="modal" id="portalModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <h2>Student Report Generator</h2>
+                <p>Provide information about your ward to generate a detailed academic report</p>
+            </div>
+
+            <div class="form-steps">
+                <div class="step active" id="step1">
+                    1
+                    <div class="step-label">Student Info</div>
+                </div>
+                <div class="step" id="step2">
+                    2
+                    <div class="step-label">Academic Details</div>
+                </div>
+                <div class="step" id="step3">
+                    3
+                    <div class="step-label">Generate Report</div>
+                </div>
+            </div>
+
+            <form id="studentReportForm">
+                <div class="form-step active" id="formStep1">
+                    <h3>Student Information</h3>
+                    <div class="form-group">
+                        <label for="studentName">Student Full Name</label>
+                        <input type="text" id="studentName" placeholder="Enter student's full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentGrade">Grade Level</label>
+                        <select id="studentGrade" required>
+                            <option value="">Select Grade</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11</option>
+                            <option value="12">Grade 12</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" placeholder="Enter student ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentDescription">Student Description</label>
+                        <textarea id="studentDescription" placeholder="Describe your ward's strengths, challenges, and interests..." required></textarea>
+                    </div>
+                    <div class="form-navigation">
+                        <div></div>
+                        <button type="button" class="cta-button next-step" data-next="2">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-step" id="formStep2">
+                    <h3>Academic Details</h3>
+                    <div class="form-group">
+                        <label for="academicProgram">Academic Program</label>
+                        <select id="academicProgram" required>
+                            <option value="">Select Program</option>
+                            <option value="stem">STEM Program</option>
+                            <option value="humanities">Humanities</option>
+                            <option value="ib">International Baccalaureate</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="currentTerm">Current Term</label>
+                        <select id="currentTerm" required>
+                            <option value="">Select Term</option>
+                            <option value="1">Term 1</option>
+                            <option value="2">Term 2</option>
+                            <option value="3">Term 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="academicYear">Academic Year</label>
+                        <input type="text" id="academicYear" placeholder="e.g., 2023-2024" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentConcerns">Parent Concerns/Notes</label>
+                        <textarea id="parentConcerns" placeholder="Any specific concerns or notes for teachers..."></textarea>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="outline-button prev-step" data-prev="1">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button type="button" class="cta-button next-step" data-next="3">
+                            Generate Report <i class="fas fa-chart-bar"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-step" id="formStep3">
+                    <h3>Student Progress Report</h3>
+                    <div id="generatedReport">
+                        <!-- Report will be generated here -->
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="outline-button prev-step" data-prev="2">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button type="button" class="cta-button" id="printReport">
+                            Print Report <i class="fas fa-print"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- the entire chatbot widget with this enhanced version -->
+<div class="chatbot-widget">
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chatbot-info">
+                <h4>Wisdom AI Assistant</h4>
+                <div class="typing-indicator">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                </div>
+            </div>
+            <div class="chatbot-controls">
+                <button class="chatbot-minimize">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="chatbot-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="chatbot-messages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>Hello! I'm Wisdom, your AI assistant at Royal Wisdom High School. I'm here to help you with admissions, programs, campus life, and anything else you'd like to know! How can I assist you today? 🤗</p>
+                    <div class="quick-questions">
+                        <button class="quick-question" data-question="Tell me about the admissions process">🎓 Admissions Process</button>
+                        <button class="quick-question" data-question="What programs do you offer?">📚 Academic Programs</button>
+                        <button class="quick-question" data-question="How much is tuition?">💰 Tuition & Financial Aid</button>
+                        <button class="quick-question" data-question="Can you tell me about campus life?">🏫 Campus Life</button>
+                    </div>
+                </div>
+                <div class="message-time">Just now</div>
+            </div>
+        </div>
+        
+        <div class="chatbot-suggestions">
+            <div class="suggestion-chips">
+                <button class="suggestion-chip" data-question="What's the application deadline?">Application Deadline</button>
+                <button class="suggestion-chip" data-question="Do you offer scholarships?">Scholarship Info</button>
+                <button class="suggestion-chip" data-question="What sports are available?">Sports Programs</button>
+            </div>
+        </div>
+        
+        <div class="chatbot-input-container">
+            <div class="chatbot-input">
+                <input type="text" placeholder="Ask me anything about Royal Wisdom..." id="chatbotInput" maxlength="500">
+                <div class="input-actions">
+                    <button class="action-btn" id="voiceInput">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="action-btn" id="sendMessage">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="input-hint">Press Enter to send • Shift+Enter for new line</div>
+        </div>
+    </div>
+    
+    <div class="chatbot-toggle">
+        <i class="fas fa-comments"></i>
+        <div class="notification-dot"></div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
